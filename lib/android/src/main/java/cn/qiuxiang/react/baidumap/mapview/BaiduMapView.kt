@@ -66,13 +66,12 @@ class BaiduMapView(context: Context) : FrameLayout(context) {
         }
 
         map.setOnMapClickListener(object : BaiduMap.OnMapClickListener {
-            override fun onMapPoiClick(poi: MapPoi): Boolean {
+            override fun onMapPoiClick(poi: MapPoi) {
                 val data = poi.position.toWritableMap()
                 data.putString("name", poi.name)
                 data.putString("uid", poi.uid)
                 emit(id, "onClick", data)
                 map.hideInfoWindow()
-                return true
             }
 
             override fun onMapClick(latLng: LatLng) {

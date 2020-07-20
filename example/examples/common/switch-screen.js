@@ -7,8 +7,8 @@ const event = new EventEmitter();
 
 const style = StyleSheet.create({
   switch: {
-    marginRight: 16
-  }
+    marginRight: 16,
+  },
 });
 
 class SwitchButton extends Component {
@@ -21,23 +21,21 @@ class SwitchButton extends Component {
 
   render() {
     return (
-      <Switch
-        style={style.switch}
-        value={this.state.value}
-        onValueChange={this.onValueChange}
-      />
+      <Switch style={style.switch} value={this.state.value} onValueChange={this.onValueChange} />
     );
   }
 }
 
 export default class SwitchScreen extends Component {
   static navigationOptions = {
-    headerRight: <SwitchButton />
+    headerRight: <SwitchButton />,
   };
 
-  componentWillUnmount() {
-    this.listener.remove();
+  componentDidMount() {
+    event.on("change", (value) => this.onSwitch(value));
   }
 
-  listener = event.addListener("change", value => this.onSwitch(value));
+  componentWillUnmount() {
+    event.clear();
+  }
 }

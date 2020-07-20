@@ -12,7 +12,12 @@ export default () => (
   <NavigationContainer>
     <Stack.Navigator>
       {Object.keys(examples).map((name) => (
-        <Stack.Screen key={name} name={name} component={examples[name].screen} />
+        <Stack.Screen
+          key={name}
+          name={name}
+          component={examples[name].screen}
+          options={examples[name].options}
+        />
       ))}
     </Stack.Navigator>
   </NavigationContainer>
