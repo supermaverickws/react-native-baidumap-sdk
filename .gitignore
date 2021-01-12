@@ -6,6 +6,7 @@ xcuserdata/
 *.xcworkspace/
 Pods/
 lib/js/
+.DS_Store
 
 *.iml
 local.properties
