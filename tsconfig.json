@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "target": "ES2016",
+    "moduleResolution": "Node",
     "lib": ["es2015"],
     "jsx": "react-native",
     "outDir": "lib/js"

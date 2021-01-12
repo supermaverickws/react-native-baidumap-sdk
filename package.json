@@ -15,18 +15,17 @@
     "url": "https://github.com/qiuxiang/react-native-baidumap-sdk"
   },
   "license": "MIT",
+  "main": "lib/js",
   "files": [
     "lib/js",
-    "lib/ios",
     "lib/android/src",
     "lib/android/build.gradle",
+    "lib/ios",
     "react-native.config.js"
   ],
-  "main": "lib/js",
-  "types": "lib/js/index.d.ts",
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
+    "dev": "npx typescript -w",
+    "build": "npx typescript",
     "build-docs": "npx typedoc --out docs/api --excludeNotExported --excludePrivate --excludeProtected --exclude src/prop-types.ts --module commonjs --mode file src",
     "start": "npx react-native start",
     "android": "npx react-native run-android",
@@ -35,16 +34,16 @@
     "ios": "npx react-native run-ios"
   },
   "dependencies": {
-    "supercluster": "^3.0.2"
+    "supercluster": "^7.1.0"
   },
   "devDependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.5.1",
     "@react-navigation/stack": "^5.5.1",
-    "@types/react-native": "^0.62.13",
+    "@types/react-native": "^0.63.1",
     "EventEmitter": "^1.0.0",
     "react": "16.13.1",
-    "react-native": "^0.62.2",
+    "react-native": "^0.63.1",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^3.0.3",

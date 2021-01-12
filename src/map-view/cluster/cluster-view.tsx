@@ -4,23 +4,32 @@ import {
   Text,
   TouchableWithoutFeedback,
   View,
-  ViewStyle
+  ViewStyle,
+  TouchableOpacity
 } from "react-native";
 import Marker from "../marker";
 import { ClusterParams } from ".";
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  wrapper: {
+    position: 'absolute',
+    opacity: 0.5,
+    zIndex: 0,
+  },
   cluster: {
-    borderWidth: 4,
-    borderColor: "rgba(245,83,61,0.5)",
-    backgroundColor: "rgba(245,83,61,0.9)",
-    alignItems: "center",
-    justifyContent: "center"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1,
   },
   text: {
-    color: "#fff",
-    fontWeight: "600"
-  }
+    fontWeight: 'bold',
+  },
 });
 
 type Props = {
@@ -39,18 +48,51 @@ export default class ClusterView extends React.PureComponent<Props> {
 
   renderClusterView = () => {
     const { count } = this.props.cluster;
-    const size = 36 + Math.log2(count);
-    const clusterStyle = {
-      width: size,
-      height: size,
-      borderRadius: size / 2
-    };
+   
+    const clusterColor = '#00B386';
+    const clusterTextColor = '#FFFFFF';
+    const spiderLineColor = '#FF0000';
+    const { width, height, fontSize, size } = returnMarkerStyle(count);
     return (
-      <TouchableWithoutFeedback>
-        <View style={[style.cluster, clusterStyle, this.props.style]}>
-          <Text style={[style.text, this.props.textStyle]}>{count}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      <TouchableOpacity
+      activeOpacity={0.5}
+      style={[styles.container, { width,height }]}
+    >
+      <View
+        style={[
+          styles.wrapper,
+          {
+            backgroundColor: clusterColor,
+            width,
+            height,
+            borderRadius: width / 2,
+          },
+        ]}
+      />
+      <View
+        style={[
+          styles.cluster,
+          {
+            backgroundColor: clusterColor,
+            width: size,
+            height: size,
+            borderRadius: size / 2,
+          },
+        ]}
+      >
+        <Text
+          style={[
+            styles.text,
+            {
+              color: clusterTextColor,
+              fontSize,
+            },
+          ]}
+        >
+          {count}
+        </Text>
+      </View>
+    </TouchableOpacity>
     );
   };
 
@@ -65,3 +107,66 @@ export default class ClusterView extends React.PureComponent<Props> {
     );
   }
 }
+
+export const returnMarkerStyle = (points) => {
+  if (points >= 50) {
+    return {
+      width: 84,
+      height: 84,
+      size: 64,
+      fontSize: 20,
+    };
+  }
+
+  if (points >= 25) {
+    return {
+      width: 78,
+      height: 78,
+      size: 58,
+      fontSize: 19,
+    };
+  }
+
+  if (points >= 15) {
+    return {
+      width: 72,
+      height: 72,
+      size: 54,
+      fontSize: 18,
+    };
+  }
+
+  if (points >= 10) {
+    return {
+      width: 66,
+      height: 66,
+      size: 50,
+      fontSize: 17,
+    };
+  }
+
+  if (points >= 8) {
+    return {
+      width: 60,
+      height: 60,
+      size: 46,
+      fontSize: 17,
+    };
+  }
+
+  if (points >= 4) {
+    return {
+      width: 54,
+      height: 54,
+      size: 40,
+      fontSize: 16,
+    };
+  }
+
+  return {
+    width: 48,
+    height: 48,
+    size: 36,
+    fontSize: 15,
+  };
+};

@@ -6,7 +6,7 @@ import { Initializer } from "react-native-baidumap-sdk";
 import examples from "./examples";
 
 const Stack = createStackNavigator();
-Initializer.init("6s1BDd7jUHhzUV8S8E3kMEyAKfqkKPrw");
+Initializer.init("sIMQlfmOXhQmPLF1QMh4aBp8zZO9Lb2A");
 
 export default () => (
   <NavigationContainer>

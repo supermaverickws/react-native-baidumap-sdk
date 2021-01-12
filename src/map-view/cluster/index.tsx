@@ -55,7 +55,8 @@ export default class Cluster extends React.PureComponent<Props, State> {
 
   init(props: Props) {
     const { radius } = props;
-    this.cluster = SuperCluster({ radius, minZoom: 3, maxZoom: 21 }).load(
+    this.cluster = new SuperCluster({ radius, minZoom: 3, maxZoom: 21 });
+    this.cluster.load(
       props.markers.map(marker => ({
         geometry: {
           coordinates: [
