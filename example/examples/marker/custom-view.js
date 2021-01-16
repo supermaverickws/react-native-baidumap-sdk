@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Pressable, Alert } from "react-native";
 import { MapView } from "react-native-baidumap-sdk";
 
 const style = StyleSheet.create({
@@ -39,7 +39,10 @@ export default class CustomView extends Component {
   }
 
   renderMarker = () => (
-    <View style={style.marker}>
+    <Pressable onPress = {()=> {
+      Alert.alert("test", "te")
+    }}>
+ <View style={style.marker} >
       <Image
         style={style.image}
         source={{
@@ -51,6 +54,8 @@ export default class CustomView extends Component {
         <Text style={style.time}>{this.state.time.toLocaleString()}</Text>
       </View>
     </View>
+    </Pressable>
+   
   );
 
   render() {
@@ -61,6 +66,9 @@ export default class CustomView extends Component {
           title="This is a custom view"
           view={this.renderMarker}
           coordinate={{ latitude: 39.914884, longitude: 116.403883 }}
+          onPress = {()=> {
+            Alert.alert("test", "te") 
+          }}
         />
       </MapView>
     );

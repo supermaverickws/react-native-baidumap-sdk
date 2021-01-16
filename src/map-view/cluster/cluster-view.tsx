@@ -5,11 +5,11 @@ import {
   TouchableWithoutFeedback,
   View,
   ViewStyle,
-  TouchableOpacity
+  Pressable,
+  Alert
 } from "react-native";
 import Marker from "../marker";
 import { ClusterParams } from ".";
-
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
@@ -52,11 +52,11 @@ export default class ClusterView extends React.PureComponent<Props> {
     const clusterColor = '#00B386';
     const clusterTextColor = '#FFFFFF';
     const spiderLineColor = '#FF0000';
-    const { width, height, fontSize, size } = returnMarkerStyle(count);
+    let { width, height, fontSize, size } = returnMarkerStyle(count);
     return (
-      <TouchableOpacity
-      activeOpacity={0.5}
+      <Pressable
       style={[styles.container, { width,height }]}
+      onPressIn={this.onPress}
     >
       <View
         style={[
@@ -92,7 +92,7 @@ export default class ClusterView extends React.PureComponent<Props> {
           {count}
         </Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
     );
   };
 
@@ -100,7 +100,6 @@ export default class ClusterView extends React.PureComponent<Props> {
     return (
       <Marker
         flat
-        onPress={this.onPress}
         coordinate={this.props.cluster.coordinate}
         view={this.renderClusterView}
       />

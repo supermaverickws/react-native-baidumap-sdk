@@ -95,6 +95,9 @@
         [_annotationView addSubview:subview];
         _annotationView.image = nil;
         _annotationView.bounds = subview.bounds;
+        _annotationView.frame =  CGRectMake(_annotationView.frame.origin.x, _annotationView.frame.origin.y, 50,  100);
+        _annotationView.bounds = CGRectMake(0, 0, 50, 50);
+       
     }
 }
 

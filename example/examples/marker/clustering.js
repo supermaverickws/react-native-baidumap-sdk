@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import { MapView } from "react-native-baidumap-sdk";
 
 export default class Clustering extends Component {
@@ -11,6 +11,7 @@ export default class Clustering extends Component {
   };
 
   onPress = cluster => {
+    Alert.alert("test", "test")
     this.mapView.setStatus(
       {
         center: cluster.coordinate,
@@ -47,12 +48,15 @@ export default class Clustering extends Component {
 
     return (
       <MapView {...props}>
-        <MapView.Cluster
+        {
+          <MapView.Cluster
           onPress={this.onPress}
           ref={ref => (this.cluster = ref)}
           markers={this.markers}
           renderMarker={this.renderMarker}
-        />
+        ></MapView.Cluster>
+        }
+        
       </MapView>
     );
   }
